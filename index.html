@@ -1,0 +1,255 @@
+from pathlib import Path
+
+from zipfile import ZipFile, ZIP_DEFLATED
+
+import shutil
+
+base = Path("/mnt/data/portfolio_github")
+
+img_dir = base / "images"
+
+img_dir.mkdir(parents=True, exist_ok=True)
+
+source_files = [
+
+    Path("/mnt/data/BBACE57A-95F6-4B5A-8542-507E6AB9A300.jpeg"),
+
+    Path("/mnt/data/D0AFB5B2-4B32-46F5-8F5C-F013920AD591.jpeg"),
+
+    Path("/mnt/data/9FE8B596-0393-439E-AB7A-3A06C6844279.jpeg"),
+
+    Path("/mnt/data/58F9ED74-C1A0-4B78-B585-882D0692373C.jpeg"),
+
+    Path("/mnt/data/F6F3022B-2B12-40CC-936B-337372977B7C.jpeg"),
+
+    Path("/mnt/data/A7216FED-03FA-46C9-9AF4-CFAEEDF92FC7.jpeg"),
+
+]
+
+names = [
+
+    "01-cover.jpeg",
+
+    "02-contact-information.jpeg",
+
+    "03-education.jpeg",
+
+    "04-introduction.jpeg",
+
+    "05-activity-1.jpeg",
+
+    "06-activity-2.jpeg",
+
+]
+
+for src, name in zip(source_files, names):
+
+    shutil.copy2(src, img_dir / name)
+
+html = """<!DOCTYPE html>
+
+<html lang="th">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Portfolio | Chawin Kaewkrajai</title>
+
+  <style>
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+
+      margin: 0;
+
+      font-family: Tahoma, "Noto Sans Thai", sans-serif;
+
+      background: linear-gradient(135deg, #d9f8ff, #66c6df, #073e70);
+
+      color: #fff;
+
+    }
+
+    header {
+
+      text-align: center;
+
+      padding: 28px 16px;
+
+      background: linear-gradient(120deg, #063b68, #0799bd);
+
+    }
+
+    header h1 { margin: 0; font-size: clamp(2rem, 7vw, 4rem); letter-spacing: 4px; }
+
+    header p { margin: 8px 0 0; line-height: 1.8; }
+
+    nav {
+
+      position: sticky; top: 0; z-index: 5;
+
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+
+      padding: 12px; background: #052f55;
+
+    }
+
+    nav a {
+
+      color: white; text-decoration: none; padding: 8px 14px;
+
+      border: 1px solid #5de0e8; border-radius: 22px;
+
+    }
+
+    nav a:hover { background: #24b9cc; color: #052f55; }
+
+    main { width: min(1000px, 94%); margin: 28px auto 50px; }
+
+    .portfolio-section {
+
+      margin: 24px 0; padding: 22px;
+
+      background: rgba(3, 42, 63, .82);
+
+      border: 1px solid rgba(255,255,255,.28);
+
+      border-radius: 22px;
+
+      box-shadow: 0 10px 28px rgba(0,0,0,.2);
+
+    }
+
+    h2 { text-align: center; margin: 0 0 18px; font-size: clamp(1.35rem, 4vw, 2rem); }
+
+    .portfolio-image {
+
+      display: block; width: 100%; height: auto;
+
+      border: 8px solid #eafcff; border-radius: 12px;
+
+      box-shadow: 0 8px 20px rgba(0,0,0,.28);
+
+    }
+
+    .cover { padding: 12px; }
+
+    .note { text-align: center; line-height: 1.8; color: #e8fbff; }
+
+    footer { text-align: center; padding: 22px; background: #052f55; }
+
+    @media (max-width: 600px) {
+
+      .portfolio-section { padding: 14px; }
+
+      .portfolio-image { border-width: 4px; }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <header id="top">
+
+    <h1>PORTFOLIO</h1>
+
+    <p>มหาวิทยาลัยสงขลานครินทร์ วิทยาเขตสุราษฎร์ธานี<br>
+
+       คณะนวัตกรรมการเกษตรและประมง</p>
+
+  </header>
+
+  <nav>
+
+    <a href="#cover">หน้าปก</a>
+
+    <a href="#contact">ข้อมูลส่วนตัว</a>
+
+    <a href="#education">การศึกษา</a>
+
+    <a href="#introduction">แนะนำตัว</a>
+
+    <a href="#activity">กิจกรรม</a>
+
+  </nav>
+
+  <main>
+
+    <section class="portfolio-section cover" id="cover">
+
+      <h2>หน้าปก Portfolio</h2>
+
+      <img class="portfolio-image" src="images/01-cover.jpeg" alt="หน้าปกแฟ้มสะสมผลงาน">
+
+    </section>
+
+    <section class="portfolio-section" id="contact">
+
+      <h2>ข้อมูลส่วนตัวและช่องทางการติดต่อ | Contact Information</h2>
+
+      <img class="portfolio-image" src="images/02-contact-information.jpeg" alt="ข้อมูลส่วนตัวและช่องทางการติดต่อ">
+
+    </section>
+
+    <section class="portfolio-section" id="education">
+
+      <h2>ประวัติการศึกษา | Education</h2>
+
+      <img class="portfolio-image" src="images/03-education.jpeg" alt="ประวัติการศึกษา">
+
+    </section>
+
+    <section class="portfolio-section" id="introduction">
+
+      <h2>แนะนำตัว | Introduction</h2>
+
+      <img class="portfolio-image" src="images/04-introduction.jpeg" alt="ข้อความแนะนำตัว">
+
+    </section>
+
+    <section class="portfolio-section" id="activity">
+
+      <h2>กิจกรรม | Activity</h2>
+
+      <p class="note">กิจกรรมอนุรักษ์ธรรมชาติ จิตอาสา และกิจกรรมพัฒนาสังคม</p>
+
+      <img class="portfolio-image" src="images/05-activity-1.jpeg" alt="กิจกรรมหน้าแรก">
+
+      <br><br>
+
+      <img class="portfolio-image" src="images/06-activity-2.jpeg" alt="กิจกรรมหน้าที่สอง">
+
+    </section>
+
+  </main>
+
+  <footer>PORTFOLIO • CHAWIN KAEWKRAJAI</footer>
+
+</body>
+
+</html>
+
+"""
+
+(base / "index.html").write_text(html, encoding="utf-8")
+
+zip_path = Path("/mnt/data/portfolio_github_ready.zip")
+
+with ZipFile(zip_path, "w", ZIP_DEFLATED) as z:
+
+    for p in base.rglob("*"):
+
+        if p.is_file():
+
+            z.write(p, p.relative_to(base.parent))
+
+print("สร้างชุดไฟล์สำหรับ GitHub เรียบร้อย: index.html พร้อมโฟลเดอร์ images ที่มีรูปครบ 6 รูป")
